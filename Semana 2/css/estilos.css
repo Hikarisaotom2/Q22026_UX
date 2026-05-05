@@ -1,0 +1,32 @@
+/* JSON
+NOMBRE{
+ PROPIEDAD: VALOR,
+}
+
+1 Identificadores
+2 Clases
+3 Etiqueta
+
+*/
+
+#parrafoPrincipal{
+    /* font-size: 20px; */
+    color:aquamarine;
+    font-style: italic;    
+    font-weight: 900;
+     color:chocolate;
+     margin-left: 150px;
+     margin-top: 200px;
+}
+
+.headers{
+    color:blueviolet;
+    font-style: italic;
+}
+
+h1{
+    color:burlywood;
+    font-weight: 400;
+}
+
+
