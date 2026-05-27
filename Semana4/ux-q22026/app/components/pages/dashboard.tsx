@@ -32,6 +32,13 @@ const DashBoard = () => {
                 textoAction1: 'like',
                 textoAction2: 'sus',
                 url: "https://m.media-amazon.com/images/S/pv-target-images/a0cb3885c44b8305ac89ba7ce98e8cd978bf3ebba6a151a00dbf2d528e98bf3b.jpg"
+            },
+                {
+                titulo: 'Tiktok',
+                descripcion: 'videos cortos...',
+                textoAction1: 'like',
+                textoAction2: 'sus',
+                url: "https://m.media-amazon.com/images/S/pv-target-images/a0cb3885c44b8305ac89ba7ce98e8cd978bf3ebba6a151a00dbf2d528e98bf3b.jpg"
             }
         ])
 
@@ -45,7 +52,10 @@ const DashBoard = () => {
                     descripcion={valor.descripcion}
                     textoAction1={valor.textoAction1}
                     textoAction2={valor.textoAction2}
-                    url={valor.url} />)
+                    url={valor.url} 
+                    actionBtn1={()=>{console.log('like')}}
+                    actionBtn2={()=>{console.log('suscribirse!')}}
+                    />)
             })}
 
         </div>
