@@ -1,7 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 
 const app = express();
 const port = 3000;
+
+app.use(bodyParser.urlencoded());
 
 app.listen(port,()=>{
     console.log('Ahora si, el servidor esta activo en el puerto 3000');
@@ -42,9 +45,23 @@ Metodos HTTP.
 app.get ('/saludar',(req,res)=>{
 
     console.log('Solicitud get a /saludar')
+    const informacion = req.body;
+    informacion.nombre
     // console.log(req)
     res.status(200).send({
         mensaje: 'Hola mundo!',
+        informacion: 'Este mensaje viene desde BE!!!!'
+    });
+});
+
+
+
+app.get ('/saludar/:mensaje',(req,res)=>{
+    const msj = req.params.mensaje;
+    const sender = req.params.remitente;
+    console.log(msj)
+    res.status(200).send({
+        mensaje: 'Mensaje recibido! ',
         informacion: 'Este mensaje viene desde BE!!!!'
     });
 });
