@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser')
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.use(bodyParser.urlencoded());
 
@@ -65,3 +65,41 @@ app.get ('/saludar/:mensaje',(req,res)=>{
         informacion: 'Este mensaje viene desde BE!!!!'
     });
 });
+
+
+app.get ('/getSeries',(req,res)=>{
+   
+    res.status(200).send({
+        series: [
+            {
+                titulo: 'One piece',
+                descripcion: 'Piratas',
+                textoAction1: 'like',
+                textoAction2: 'sus',
+                url: "https://m.media-amazon.com/images/S/pv-target-images/a0cb3885c44b8305ac89ba7ce98e8cd978bf3ebba6a151a00dbf2d528e98bf3b.jpg"
+            },
+            {
+                titulo: 'Vinlad Saga',
+                descripcion: 'Vikingos',
+                textoAction1: 'like',
+                textoAction2: 'sus',
+                url: "https://m.media-amazon.com/images/S/pv-target-images/a0cb3885c44b8305ac89ba7ce98e8cd978bf3ebba6a151a00dbf2d528e98bf3b.jpg"
+            },
+             {
+                titulo: 'Tiktok',
+                descripcion: 'videos cortos...',
+                textoAction1: 'like',
+                textoAction2: 'sus',
+                url: "https://m.media-amazon.com/images/S/pv-target-images/a0cb3885c44b8305ac89ba7ce98e8cd978bf3ebba6a151a00dbf2d528e98bf3b.jpg"
+            },
+                {
+                titulo: 'Tiktok',
+                descripcion: 'videos cortos...',
+                textoAction1: 'like',
+                textoAction2: 'sus',
+                url: "https://m.media-amazon.com/images/S/pv-target-images/a0cb3885c44b8305ac89ba7ce98e8cd978bf3ebba6a151a00dbf2d528e98bf3b.jpg"
+            }
+        ],
+    });
+});
+

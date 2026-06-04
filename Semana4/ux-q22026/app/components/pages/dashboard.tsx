@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from "react";
 import Card, { BotonProps } from "../moleculas/card"
+import axios from "axios";
 
 
 
@@ -8,44 +9,22 @@ const DashBoard = () => {
 
     const [series, setSeries] = useState<BotonProps[]>([])
 
+    console.log('Variable de entorno:',process.env.NEXT_PUBLIC_API_URL);
+
     useEffect(() => {
 
-        //solicitar data de la db.....
-        setSeries([
-            {
-                titulo: 'One piece',
-                descripcion: 'Piratas',
-                textoAction1: 'like',
-                textoAction2: 'sus',
-                url: "https://m.media-amazon.com/images/S/pv-target-images/a0cb3885c44b8305ac89ba7ce98e8cd978bf3ebba6a151a00dbf2d528e98bf3b.jpg"
-            },
-            {
-                titulo: 'Vinlad Saga',
-                descripcion: 'Vikingos',
-                textoAction1: 'like',
-                textoAction2: 'sus',
-                url: "https://m.media-amazon.com/images/S/pv-target-images/a0cb3885c44b8305ac89ba7ce98e8cd978bf3ebba6a151a00dbf2d528e98bf3b.jpg"
-            },
-             {
-                titulo: 'Tiktok',
-                descripcion: 'videos cortos...',
-                textoAction1: 'like',
-                textoAction2: 'sus',
-                url: "https://m.media-amazon.com/images/S/pv-target-images/a0cb3885c44b8305ac89ba7ce98e8cd978bf3ebba6a151a00dbf2d528e98bf3b.jpg"
-            },
-                {
-                titulo: 'Tiktok',
-                descripcion: 'videos cortos...',
-                textoAction1: 'like',
-                textoAction2: 'sus',
-                url: "https://m.media-amazon.com/images/S/pv-target-images/a0cb3885c44b8305ac89ba7ce98e8cd978bf3ebba6a151a00dbf2d528e98bf3b.jpg"
-            }
-        ])
+        // //solicitar data de la db.....
+        // llamar a nuestrop BE y obtener la informacion 
 
+        
+       let series =  axios.get(process.env.NEXT_PUBLIC_API_URL+"/getSeries")
+
+       console.log('SERIES DESDE BACKEND!!!!!!',series)
+    //    setSeries(series);
     }, []);
     return (
         <div>
-            {series.map((valor, key) => {
+            {/* {series.map((valor, key) => {
                 return (<Card
                     key={key}
                     titulo={valor.titulo}
@@ -56,7 +35,8 @@ const DashBoard = () => {
                     actionBtn1={()=>{console.log('like')}}
                     actionBtn2={()=>{console.log('suscribirse!')}}
                     />)
-            })}
+            })} */}
+            <h1>{process.env.NEXT_PUBLIC_API_URL}</h1>
 
         </div>
     )
