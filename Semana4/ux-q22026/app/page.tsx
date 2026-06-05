@@ -1,11 +1,9 @@
-'use client';
 
+import axios from "axios";
 import DashBoard from "./components/pages/dashboard";
 
 
 export default function Home() {
-  
-
 
   return (
     <div 

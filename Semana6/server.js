@@ -1,10 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser')
+const cors = require('cors');
 
 const app = express();
 const port = 3001;
 
 app.use(bodyParser.urlencoded());
+app.use(cors());
+
 
 app.listen(port,()=>{
     console.log('Ahora si, el servidor esta activo en el puerto 3000');
@@ -72,7 +75,7 @@ app.get ('/getSeries',(req,res)=>{
     res.status(200).send({
         series: [
             {
-                titulo: 'One piece',
+                titulo: 'ux desde BE: One piece',
                 descripcion: 'Piratas',
                 textoAction1: 'like',
                 textoAction2: 'sus',
