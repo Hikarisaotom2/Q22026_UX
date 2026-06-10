@@ -1,16 +1,35 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const cors = require('cors');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+
+const uri = "mongodb+srv://claseux2025:Password123@uxq22026.hulqnd0.mongodb.net/?appName=uxq22026";
 
 const app = express();
 const port = 3001;
+
+
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
 
 app.use(bodyParser.urlencoded());
 app.use(cors());
 
 
-app.listen(port,()=>{
+app.listen(port,async ()=>{
     console.log('Ahora si, el servidor esta activo en el puerto 3000');
+
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    client.db("netflixUx").command({ ping: 1 }).then(()=>{
+        console.log('Conectados a la BD!!!!')
+    })
 });
 
 // console.log('Esta linea se ejecuta luego del app.listen');
@@ -44,6 +63,30 @@ Metodos HTTP.
         - Payload: informaion que se envia junto a la solicitud 
         - Callback: un fragmento de codigo que se ejecuta al final de un procfeso async 
 */
+
+app.post('/crearSerie',async (req,res)=>{
+    try{
+        const document = {
+                titulo: req.body.titulo,
+                descripcion: req.body.descripcion,
+                textoAction1: req.body.textoAction1,
+                textoAction2: req.body.textoAction2,
+                url: req.body.url
+        }
+        const respuesta = await client.db("netflixUx").collection('series').insertOne(document)
+        res.status(201).send(
+            {
+                msj: 'Elemento creado exitosamente!',
+                respuestaMongo: respuesta
+            }
+        );
+    }catch(e){
+     res.status(500).send({
+        msj: 'No se pudo guaradar el registro :( ',
+        error: e
+     })
+    }
+});
 
 app.get ('/saludar',(req,res)=>{
 
